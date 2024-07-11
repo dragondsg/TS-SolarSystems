@@ -3,7 +3,21 @@
 // Return example: 1902
 // Hint: use a Map data structure instead of an object if you want typescript to be happy
 
-export function getGreatestDiscoveryYear(asteroids) {}
+import { Asteroid } from "../data/Types";
+
+export function getGreatestDiscoveryYear(asteroids: Asteroid[]) {
+    let years = asteroids.map((asteroid)=>asteroid.discoveryYear);
+    let currentMax: number = 0;
+    let maxCount: number = 0;
+    for (let year of years) {
+        let count = years.filter((elm)=> elm == year).length;
+        if (count > maxCount) {
+            currentMax = year;
+            maxCount = count;
+        }
+    }
+    return currentMax;
+}
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-16"
